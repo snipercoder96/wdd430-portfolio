@@ -9,11 +9,13 @@
   --accent: #075985;
   --muted: #1f3d52;
   --border: #b8c9d9;
+  --color-brand: #4f46e5;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand: var(--color-brand);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -29,43 +31,4 @@
     --muted: #d4e4f0;
     --border: #3b5a73;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.site-header {
-  background: var(--header);
-  color: #ffffff;
-}
-
-.site-link,
-.site-accent {
-  color: var(--accent);
-}
-
-.site-heading {
-  color: var(--foreground);
-}
-
-.site-header .site-link {
-  color: #ffffff;
-}
-
-.site-card {
-  background: var(--surface);
-  border-left-color: var(--accent);
-  border-bottom: 1px solid var(--border);
-}
-
-.site-muted {
-  color: var(--muted);
-}
-
-.site-footer {
-  background: var(--footer);
-  color: #ffffff;
 }
