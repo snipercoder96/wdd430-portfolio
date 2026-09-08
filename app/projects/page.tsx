@@ -34,7 +34,7 @@ export default function ProjectsPage() {
                 <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#075985]">
                     Featured work
                 </p>
-                <h1 className="site-heading text-3xl font-bold sm:text-4xl">Recent Projects</h1>
+                <h1 className="site-heading text-3xl font-bold sm:text-4xl">Projects Overview</h1>
             </div>
 
             <ProjectList projects={projects} />
