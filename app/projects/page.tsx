@@ -1,33 +1,25 @@
-import ProjectList from '@/components/ProjectList';
+"use client";
 
-const projects = [
-    {
-        title: 'Movie App (WDD 330 Final)',
-        description: 'A full-stack app that integrates OMDb/TMDb APIs for movie details and YouTube Data API for trailers.',
-        technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'YouTube API'],
-        link: 'https://github.com/snipercoder96/wdd330'
-    },
-    {
-        title: 'PawnSchool',
-        description: 'A chess teaching site inspired by the idea that pawns are in school until they graduate by promotion.',
-        technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
-        link: 'https://github.com/snipercoder96/wdd231/tree/main/final'
-    },
-    {
-        title: 'HyperMarkup Mentor',
-        description: 'A webpage that provides practical tips and guidance for writing clean, effective HTML markup.',
-        technologies: ['HTML', 'CSS', 'JavaScript'],
-        link: 'https://github.com/snipercoder96/wdd131/tree/main/project'
-    },
-    {
-        title: 'Portfolio (WDD 430)',
-        description: 'My full-stack portfolio project showcasing Next.js, API routes, and MongoDB integration.',
-        technologies: ['Next.js', 'React', 'MongoDB', 'Tailwind CSS'],
-        link: 'https://github.com/snipercoder96/wdd430-portfolio'
-    }
-];
+import { useEffect, useState } from "react";
+
+type Project = {
+    id: number;
+    title: string;
+    description: string;
+    type: "opensource" | "school";
+    technologies: string[];
+    link?: string;
+};
 
 export default function ProjectsPage() {
+    const [projects, setProjects] = useState<Project[]>([]);
+
+    useEffect(() => {
+        fetch("/api/projects")
+            .then((res) => res.json())
+            .then((data) => setProjects(data));
+    }, []);
+
     return (
         <main className="mx-auto max-w-6xl px-4 py-12">
             <div className="mb-8">
@@ -37,7 +29,12 @@ export default function ProjectsPage() {
                 <h1 className="site-heading text-3xl font-bold sm:text-4xl">Projects Overview</h1>
             </div>
 
-            <ProjectList projects={projects} />
+            {projects.map((project) => (
+                <div key={project.id} className="mb-4 rounded border border-slate-200 p-4 shadow-sm">
+                    <h2 className="text-xl font-bold text-slate-800">{project.title}</h2>
+                    <p className="mt-2 text-slate-600">{project.description}</p>
+                </div>
+            ))}
         </main>
     );
 }
