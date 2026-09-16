@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Loading from "./loading";
 
 type Project = {
     id: number;
@@ -13,12 +14,18 @@ type Project = {
 
 export default function OpenSourcePage() {
     const [projects, setProjects] = useState<Project[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetch("/api/projects?type=opensource")
             .then((res) => res.json())
-            .then((data) => setProjects(data));
+            .then((data) => setProjects(data))
+            .finally(() => setIsLoading(false));
     }, []);
+
+    if (isLoading) {
+        return <Loading />;
+    }
 
     return (
         <main className="mx-auto max-w-6xl px-4 py-12">
