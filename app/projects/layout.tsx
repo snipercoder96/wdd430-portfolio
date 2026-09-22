@@ -1,5 +1,5 @@
-import link from "next/link";
-// app/projects/layout.tsx
+import Link from "next/link";
+
 export default function ProjectsLayout({
     children,
 }: {
@@ -9,9 +9,10 @@ export default function ProjectsLayout({
         <section>
             {/* Section-specific navigation */}
             <nav className="projects-nav max-w-full mx-auto flex items-center justify-around px-4 border-b border-gray-300 shadow-md py-4">
-                <a href="/projects">Overview</a>
-                <a href="/projects/opensource">Open Source</a>
-                <a href="/projects/school">School</a>
+                <Link href="/projects">Overview</Link>
+                <Link href="/projects/opensource">Open Source</Link>
+                <Link href="/projects/school">School</Link>
+                <Link href="/projects/create">Create Project</Link>
             </nav>
 
             {/* Scoped content */}

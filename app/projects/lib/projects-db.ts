@@ -32,5 +32,23 @@ export function getProjects(type?: string | null): Project[] {
 }
 
 export function getProjectById(id: number): Project | null {
-    return projects.find(p => p.id === id) ?? null;
+    if (!Number.isInteger(id) || id <= 0) {
+        return null;
+    }
+
+    return projects.find((project) => project.id === id) ?? null;
+}
+
+// project id is omitted from the interface
+// creates a new project with a id key → the value gets the maximum project, then adds 1 to it, but defaults to 1
+// ... spread operator adds whatever was left behind except the project id.
+// pushes the new project into the mock database, returns the new project.
+export function addProject(project: Omit<Project, 'id'>): Project {
+    const newProject: Project = {
+        id: projects.length > 0 ? Math.max(...projects.map(p => p.id)) + 1 : 1,
+        ...project,
+    };
+
+    projects.push(newProject);
+    return newProject;
 }

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+
 
 type Project = {
     id: number;
@@ -33,6 +35,9 @@ export default function ProjectsPage() {
                 <div key={project.id} className="mb-4 rounded border border-slate-200 p-4 shadow-sm">
                     <h2 className="text-xl font-bold text-slate-800">{project.title}</h2>
                     <p className="mt-2 text-slate-600">{project.description}</p>
+                    <Link href={`/projects/${project.id}/delete`}>
+                        Delete
+                    </Link>
                 </div>
             ))}
         </main>
